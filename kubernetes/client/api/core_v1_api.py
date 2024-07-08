@@ -8423,6 +8423,174 @@ class CoreV1Api(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def read_namespaced_pod_log(self, name, namespace, **kwargs):  # noqa: E501
+        """read_namespaced_pod_log  # noqa: E501
+
+        read log of the specified Pod  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_log(name, namespace, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str name: name of the Pod (required)
+        :param str namespace: object name and auth scope, such as for teams and projects (required)
+        :param str container: The container for which to stream logs. Defaults to only container if there is one container in the pod.
+        :param bool follow: Follow the log stream of the pod. Defaults to false.
+        :param bool insecure_skip_tls_verify_backend: insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver's TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet).
+        :param int limit_bytes: If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit.
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param bool previous: Return previous terminated container logs. Defaults to false.
+        :param int since_seconds: A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified.
+        :param int tail_lines: If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime
+        :param bool timestamps: If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false.
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.read_namespaced_pod_log_with_http_info(name, namespace, **kwargs)  # noqa: E501
+
+    def read_namespaced_pod_log_with_http_info(self, name, namespace, **kwargs):  # noqa: E501
+        """read_namespaced_pod_log  # noqa: E501
+
+        read log of the specified Pod  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_log_with_http_info(name, namespace, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str name: name of the Pod (required)
+        :param str namespace: object name and auth scope, such as for teams and projects (required)
+        :param str container: The container for which to stream logs. Defaults to only container if there is one container in the pod.
+        :param bool follow: Follow the log stream of the pod. Defaults to false.
+        :param bool insecure_skip_tls_verify_backend: insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver's TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet).
+        :param int limit_bytes: If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit.
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param bool previous: Return previous terminated container logs. Defaults to false.
+        :param int since_seconds: A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified.
+        :param int tail_lines: If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime
+        :param bool timestamps: If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false.
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(str, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'name',
+            'namespace',
+            'container',
+            'follow',
+            'insecure_skip_tls_verify_backend',
+            'limit_bytes',
+            'pretty',
+            'previous',
+            'since_seconds',
+            'tail_lines',
+            'timestamps'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method read_namespaced_pod_log" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'name' is set
+        if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
+                                                        local_var_params['name'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `name` when calling `read_namespaced_pod_log`")  # noqa: E501
+        # verify the required parameter 'namespace' is set
+        if self.api_client.client_side_validation and ('namespace' not in local_var_params or  # noqa: E501
+                                                        local_var_params['namespace'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `namespace` when calling `read_namespaced_pod_log`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'name' in local_var_params:
+            path_params['name'] = local_var_params['name']  # noqa: E501
+        if 'namespace' in local_var_params:
+            path_params['namespace'] = local_var_params['namespace']  # noqa: E501
+
+        query_params = []
+        if 'container' in local_var_params and local_var_params['container'] is not None:  # noqa: E501
+            query_params.append(('container', local_var_params['container']))  # noqa: E501
+        if 'follow' in local_var_params and local_var_params['follow'] is not None:  # noqa: E501
+            query_params.append(('follow', local_var_params['follow']))  # noqa: E501
+        if 'insecure_skip_tls_verify_backend' in local_var_params and local_var_params['insecure_skip_tls_verify_backend'] is not None:  # noqa: E501
+            query_params.append(('insecureSkipTLSVerifyBackend', local_var_params['insecure_skip_tls_verify_backend']))  # noqa: E501
+        if 'limit_bytes' in local_var_params and local_var_params['limit_bytes'] is not None:  # noqa: E501
+            query_params.append(('limitBytes', local_var_params['limit_bytes']))  # noqa: E501
+        if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
+            query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'previous' in local_var_params and local_var_params['previous'] is not None:  # noqa: E501
+            query_params.append(('previous', local_var_params['previous']))  # noqa: E501
+        if 'since_seconds' in local_var_params and local_var_params['since_seconds'] is not None:  # noqa: E501
+            query_params.append(('sinceSeconds', local_var_params['since_seconds']))  # noqa: E501
+        if 'tail_lines' in local_var_params and local_var_params['tail_lines'] is not None:  # noqa: E501
+            query_params.append(('tailLines', local_var_params['tail_lines']))  # noqa: E501
+        if 'timestamps' in local_var_params and local_var_params['timestamps'] is not None:  # noqa: E501
+            query_params.append(('timestamps', local_var_params['timestamps']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json', 'application/yaml', 'application/vnd.kubernetes.protobuf'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['BearerToken']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/api/v1/namespaces/{namespace}/pods/{name}/log', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def read_node(self, name, **kwargs):  # noqa: E501
         """read_node  # noqa: E501
 
