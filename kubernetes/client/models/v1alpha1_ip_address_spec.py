@@ -49,8 +49,7 @@ class V1alpha1IPAddressSpec(object):
         self._parent_ref = None
         self.discriminator = None
 
-        if parent_ref is not None:
-            self.parent_ref = parent_ref
+        self.parent_ref = parent_ref
 
     @property
     def parent_ref(self):
@@ -70,6 +69,8 @@ class V1alpha1IPAddressSpec(object):
         :param parent_ref: The parent_ref of this V1alpha1IPAddressSpec.  # noqa: E501
         :type: V1alpha1ParentReference
         """
+        if self.local_vars_configuration.client_side_validation and parent_ref is None:  # noqa: E501
+            raise ValueError("Invalid value for `parent_ref`, must not be `None`")  # noqa: E501
 
         self._parent_ref = parent_ref
 

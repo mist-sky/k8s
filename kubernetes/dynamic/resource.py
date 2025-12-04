@@ -288,7 +288,7 @@ class ResourceInstance(object):
         self.client = client
         # If we have a list of resources, then set the apiVersion and kind of
         # each resource in 'items'
-        kind = instance['kind']
+        kind = instance.get('kind', '')
         if kind.endswith('List') and 'items' in instance:
             kind = instance['kind'][:-4]
             for item in instance['items']:
